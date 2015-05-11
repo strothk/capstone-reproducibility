@@ -21,17 +21,23 @@ instead (e.g. alpha)
 --> 
 
 <!-- Load the politics.csv data file. -->
+First we load the data
 
-
-
+```{r}
+politics<-read.csv("politics.csv")
+```
 <!-- 
 Check the structure.
 subject, party, testtime, minwage, and sex need to be factors.
 optimismscore and income should be integer and numeric vectors.
 Fix any variables that aren't right.
 -->
-
-
+I am going to change the factors to subject, party, testtime, minwage, and sex
+```{r}
+str(politics)
+politics$subject<-factor(politics$subject)
+str(politics)
+```
 <!-- Find the minimum, mean, and variance for posttest
 optimism scores. -->
 
