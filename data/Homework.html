@@ -90,7 +90,7 @@ subject, party, testtime, minwage, and sex need to be factors.
 optimismscore and income should be integer and numeric vectors.
 Fix any variables that aren't right.
 -->
-<p>I am going to change the factors to subject, party, testtime, minwage, and sex</p>
+<p>I am going to change subject to a factor. Additionally I am going to change the chronological order of the post and pre test scores</p>
 <pre class="r"><code>str(politics)</code></pre>
 <pre><code>## 'data.frame':    132 obs. of  7 variables:
 ##  $ subject      : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -110,8 +110,23 @@ str(politics)</code></pre>
 ##  $ minwage      : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 1 2 1 2 1 1 1 1 1 ...
 ##  $ sex          : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 2 1 2 2 2 2 2 2 2 ...
 ##  $ income       : num  37.3 42.3 73 33.8 57.3 ...</code></pre>
+<pre class="r"><code>politics$testtime&lt;-factor(politics$testtime, levels=c(&quot;pre&quot;, &quot;post&quot;))
+str(politics)</code></pre>
+<pre><code>## 'data.frame':    132 obs. of  7 variables:
+##  $ subject      : Factor w/ 66 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ party        : Factor w/ 3 levels &quot;democrat&quot;,&quot;independent&quot;,..: 3 3 2 2 2 3 3 2 3 2 ...
+##  $ testtime     : Factor w/ 2 levels &quot;pre&quot;,&quot;post&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ optimismscore: int  52 51 69 51 61 31 57 48 42 64 ...
+##  $ minwage      : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 1 2 1 2 1 1 1 1 1 ...
+##  $ sex          : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 2 1 2 2 2 2 2 2 2 ...
+##  $ income       : num  37.3 42.3 73 33.8 57.3 ...</code></pre>
 <!-- Find the minimum, mean, and variance for posttest
 optimism scores. -->
+<p>Here I am going to find the mimimum, mean, and variance for posttest optimism scores. First, I have to assign the optimism scores from the pretest to a variable called optimism score because the optimism scores are listed twice.</p>
+<pre class="r"><code>optimismscore&lt;-politics$optimismscore[trues]
+summary(optimismscore)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   17.00   39.50   55.50   54.98   66.75   94.00</code></pre>
 <!-- Create a histogram of posttest optimism scores.
 Feel free to use the default ugly settings since
 we didn't cover how to do this in ggplot2. If

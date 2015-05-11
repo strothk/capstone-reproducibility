@@ -32,15 +32,23 @@ subject, party, testtime, minwage, and sex need to be factors.
 optimismscore and income should be integer and numeric vectors.
 Fix any variables that aren't right.
 -->
-I am going to change the factors to subject, party, testtime, minwage, and sex
+I am going to change subject to a factor. Additionally I am going to change the chronological order of the post and pre test scores
 ```{r}
 str(politics)
 politics$subject<-factor(politics$subject)
 str(politics)
 ```
+```{r}
+politics$testtime<-factor(politics$testtime, levels=c("pre", "post"))
+str(politics)
+```
 <!-- Find the minimum, mean, and variance for posttest
 optimism scores. -->
-
+Here I am going to find the mimimum, mean, and variance for posttest optimism scores. First, I have to assign the optimism scores from the pretest to a variable called optimism score because the optimism scores are listed twice.
+```{r}
+optimismscore<-politics$optimismscore[trues]
+summary(optimismscore)
+```
 
 <!-- Create a histogram of posttest optimism scores.
 Feel free to use the default ugly settings since
